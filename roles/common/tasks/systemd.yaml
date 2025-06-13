@@ -1,15 +1,30 @@
 
+# - name: copy {{ component }} service to system directory
+#   ansible.builtin.template:
+#       src: "{{ component }}.service.j2"
+#       dest: "/etc/systemd/system/{{ component }}.service"
+
+# - name: systemctl deamon reload 
+#   ansible.builtin.systemd_service:
+#       daemon_reload: true
+
+# - name: start and enable "{{ component }}"
+#   ansible.builtin.service:
+#       name: "{{ component }}"
+#       state: restarted
+#       enabled: yes
+
 - name: copy {{ component }} service to system directory
   ansible.builtin.template:
-      src: "{{ component }}.service.j2"
-      dest: "/etc/systemd/system/{{ component }}.service"
+    src: "{{ component }}.service.j2"
+    dest: "/etc/systemd/system/{{ component }}.service"
 
-- name: systemctl deamon reload 
+- name: systemctl deamon reload
   ansible.builtin.systemd_service:
-      daemon_reload: true
+    daemon_reload: true
 
-- name: start and enable "{{ component }}"
+- name: start and enable {{ component }}
   ansible.builtin.service:
-      name: "{{ component }}"
-      state: restarted
-      enabled: yes
+    name: "{{ component }}"
+    state: restarted # even app is not running we can restart
+    enabled: yes
