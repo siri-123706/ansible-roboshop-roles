@@ -1,0 +1,4 @@
+MYSQL_HOST: mysql-daws84s.cfd
+MYSQL_ROOT_USER: user
+MYSQL_ROOT_PASSWORD: Roboshop@1
+CART_HOST: cart.daws84s.cfd
