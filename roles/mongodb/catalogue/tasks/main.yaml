@@ -4,7 +4,7 @@
     tasks_from: app-setup 
  
  
-- name: app  setup
+- name:  nodejs
   include_role:
   name: common
   tasks_from: nodejs
@@ -28,28 +28,6 @@
   ansible.builtin.debug:
   msg: "{{catalogue_output}}"
 
-
-- name: start and enable catalogue
-  ansible.builtin.service:
-      name: catalogue
-      state: started
-      enabled: yes
-
-- name: copy mongodb repo
-  ansible.builtin.copy:
-      src: mongo.repo
-      dest: /etc/yum.repos.d/mongo.repo
-
-- name: install mongodb client
-  ansible.builtin.dnf:
-      name: mongodb-mongosh
-      state: present 
-
-- name: check products loaded or not
-  ansible.builtin.command: mongosh --host mongodb.daws84s.cfd --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
-  register: "{{ catalogue_output }}"
-
-
 - name: load products
   ansible.builtin.shell: mongosh --host mongodbs84s.cfd < /app/db/master-data.js
   when: catalogue_output.stdout | int < 0
@@ -57,12 +35,5 @@
 - name: systemd  setup
   include_role:
   name: common
-  tasks_from: sytemd.yaml
+  tasks_from: systemd.yaml
 
-- name: Deployment
-  tags: 
-  - deployment
-  import_role:
-    name: common
-    tasks_from: deployment
-  
