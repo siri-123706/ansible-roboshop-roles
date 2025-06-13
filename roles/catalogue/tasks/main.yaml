@@ -1,13 +1,12 @@
 - name: app-setup
   include_role:
-    name: common
-    tasks_from: app-setup
-
-
+     name: common
+     tasks_from: app-setup
+     
 - name: nodejs
   include_role:
-    name: common
-    tasks_from: nodejs
+     name: common
+     tasks_from: nodejs
 
 - name: copy mongodb repo
   ansible.builtin.copy:
@@ -20,7 +19,7 @@
     state: present
 
 - name: check products loaded or not
-  ansible.builtin.command: mongosh --host mongodb.daws84s.cfd --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+  ansible.builtin.command: mongosh --host mongodb.calvio.store --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
   register: catalogue_output
 
 - name: print catalogue output
@@ -28,10 +27,10 @@
     msg: "{{ catalogue_output }}"
 
 - name: load products
-  ansible.builtin.shell: mongosh --host mongodb.daws84s.cfd < /app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongodb.calvio.store < /app/db/master-data.js
   when: catalogue_output.stdout | int < 0
 
 - name: systemd setup
   include_role:
     name: common
-    tasks_from: systemd.yaml 
+    tasks_from: systemd.yaml
