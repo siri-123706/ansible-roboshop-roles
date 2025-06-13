@@ -26,7 +26,7 @@
 
 - name: print catalogue output 
   ansible.builtin.debug:
-  register: "{{catalogue_output}}"
+  msg: "{{catalogue_output}}"
 
 
 - name: start and enable catalogue
@@ -43,11 +43,7 @@
 - name: install mongodb client
   ansible.builtin.dnf:
       name: mongodb-mongosh
-      state: present
-
-- name: check products loaded or not
-  ansible.builtin.command: mongosh --host mongodb.daws84s.cfd --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
-  register: catalogue_output
+      state: present 
 
 - name: check products loaded or not
   ansible.builtin.command: mongosh --host mongodb.daws84s.cfd --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
