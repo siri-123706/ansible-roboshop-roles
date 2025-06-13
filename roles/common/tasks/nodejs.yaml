@@ -6,8 +6,8 @@
 
 - name: Install nodejs
   ansible.builtin.dnf:
-- name: nodejs
-  state: present
+    name: nodejs
+    state: present
 
 - name: install dependencies
   community.general.npm:
