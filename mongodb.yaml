@@ -1,4 +1,0 @@
-- name: configure mongodb component
-  become: yes
-  roles:
-     mongodb 
