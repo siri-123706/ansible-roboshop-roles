@@ -8,8 +8,8 @@
     tasks_from: maven
               
 - name: import data
-  tags: 
-  - import 
+  # tags: 
+  # - import 
   community.mysql.mysql_db:
     name: all
     login_user: "{{ MYSQL_ROOT_USER }}"
