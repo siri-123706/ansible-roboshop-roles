@@ -7,7 +7,7 @@
     name: common
     tasks_from: maven
               
-- name:
+- name: import data
   # tags: 
   # - import 
   community.mysql.mysql_db:
