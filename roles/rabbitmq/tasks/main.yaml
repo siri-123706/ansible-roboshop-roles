@@ -1,4 +1,4 @@
-- name: setup rabbitmq component
+- name: setup rabbitmq repo 
   become: yes
   tasks:
   - name: copy rabbitmq repo
