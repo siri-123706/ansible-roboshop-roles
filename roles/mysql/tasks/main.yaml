@@ -19,4 +19,5 @@
 
   
 - name: setp root password
-  ansible.builtin.command: mysql_secure_installation --set-root-pass RoboShop@1 # {{ MYSQL_ROOT_PASSWORD }}
+  # ansible.builtin.command: mysql_secure_installation --set-root-pass RoboShop@1 # {{ MYSQL_ROOT_PASSWORD }}
+  ansible.builtin.command:  {{ MYSQL_ROOT_PASSWORD }}
