@@ -12,3 +12,6 @@
   include_role:
     name: common
     tasks_from: systemd.yaml
+
+
+# include role go and check fetch the tasks from common role /appp.setup excute now means during excution 
